@@ -29,6 +29,10 @@ const NewAccount = () => {
 
         // Validate that there are no empty field
 
+        // Password at least 6 characters
+
+        // Passwords must match
+
         // Pass to action in reducer
     }
 
