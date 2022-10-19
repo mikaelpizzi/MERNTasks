@@ -12,7 +12,7 @@ const TaskList = () => {
     if (!project) return <h2>Select a project</h2>;
 
     // Array destructuring for extract actual project
-    const [ actualProject ] = project
+    const [ actualProject ] = project;
 
     const ProjectTasks = [
         {name: 'Choose Platform', state: true},
