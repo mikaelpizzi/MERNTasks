@@ -1,3 +1,4 @@
+import Bar from "../layout/Bar";
 import Sidebar from "../layout/Sidebar";
 
 const Projects = () => {
@@ -6,6 +7,8 @@ const Projects = () => {
             <Sidebar />
 
             <div className="seccion-principal">
+                <Bar />
+                
                 <main>
                     <div className="contenedor-tareas">
 
