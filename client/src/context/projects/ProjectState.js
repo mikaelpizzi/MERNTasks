@@ -6,7 +6,8 @@ import {
     PROJECT_FORM,
     GET_PROJECTS,
     ADD_PROJECT,
-    VALIDATE_FORM
+    VALIDATE_FORM,
+    ACTUAL_PROJECT
 } from "../../types"
 
 
@@ -22,7 +23,8 @@ const ProjectState = props => {
     const initialState = { 
         projects: [],
         form: false,
-        formerror: false
+        formerror: false,
+        project: null
     }
 
     // Dispatch for exec actions
@@ -60,16 +62,26 @@ const ProjectState = props => {
             type: VALIDATE_FORM
         })
     }
+
+    // Select project that user clicked
+    const actualProject = projectId => {
+        dispatch({
+            type: ACTUAL_PROJECT,
+            payload: projectId
+        })
+    }
     return (
         <ProjectContext.Provider
             value={{
                 projects: state.projects,
                 form: state.form,
                 formerror: state.formerror,
+                project: state.project,
                 showForm,
                 getProjects,
                 addProject,
-                showError
+                showError,
+                actualProject
             }}
         >
             {props.children}
