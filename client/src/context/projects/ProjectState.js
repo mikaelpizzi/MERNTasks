@@ -14,7 +14,7 @@ import {
 
 const ProjectState = props => {
 
-    // For dispatch
+    // For dispatch before using a DB
     const projects = [
         { id: 1, name: 'Cool Virtual Store' },
         { id: 2, name: 'Intranet' }, 
