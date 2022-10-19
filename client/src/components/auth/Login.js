@@ -4,7 +4,7 @@ import { Link }from 'react-router-dom';
 const Login = () => {
 
     
-    // Sign in state
+    // Log in state
     const [ user, saveUser ] = useState({
         email: '',
         password: ''
@@ -21,7 +21,7 @@ const Login = () => {
         })
     }
     
-    // When user wants to sign in
+    // When user wants to log in
     const onSubmitSignIn = e => {
         e.preventDefault();
 
@@ -33,7 +33,7 @@ const Login = () => {
     return (  
         <div className="form-usuario">
             <div className="contenedor-form sombra-dark">
-                <h1>Sign in</h1>
+                <h1>Log in</h1>
 
                 <form
                     onSubmit={onSubmitSignIn}
@@ -65,7 +65,7 @@ const Login = () => {
                         <input
                             type="submit"
                             className="btn btn-primario btn-block"
-                            value="Sign in"
+                            value="Log in"
                         />
                     </div>
                 </form>
