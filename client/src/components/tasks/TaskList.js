@@ -14,12 +14,7 @@ const TaskList = () => {
     // Array destructuring for extract actual project
     const [ actualProject ] = project;
 
-    const ProjectTasks = [
-        {name: 'Choose Platform', state: true},
-        {name: 'Choose Colors', state: false},
-        {name: 'Choose Payment Platforms', state: false},
-        {name: 'Choose Hosting', state: true}
-    ];
+    const ProjectTasks = [];
 
     // Delete a project
     const onClickDeleteProject = () => {
