@@ -236,6 +236,15 @@ aside  {
 .estado {
   margin-right: 1rem;
 }
+
+.message {
+  margin-top: 2rem;
+  font-family: var(--headingFont);
+  padding: 1.5rem;
+  font-size: 1.4;
+  font-weight: 400;
+}
+
 .estado button, 
 .mensaje {
   font-weight: 900;
