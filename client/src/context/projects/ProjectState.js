@@ -5,7 +5,8 @@ import { v4 } from "uuid";
 import { 
     PROJECT_FORM,
     GET_PROJECTS,
-    ADD_PROJECT
+    ADD_PROJECT,
+    VALIDATE_FORM
 } from "../../types"
 
 
@@ -20,7 +21,8 @@ const ProjectState = props => {
 
     const initialState = { 
         projects: [],
-        form: false
+        form: false,
+        formerror: false
     }
 
     // Dispatch for exec actions
@@ -52,14 +54,22 @@ const ProjectState = props => {
         })
     }
 
+    // Validate form and show errors
+    const showError = () => {
+        dispatch({
+            type: VALIDATE_FORM
+        })
+    }
     return (
         <ProjectContext.Provider
             value={{
                 projects: state.projects,
                 form: state.form,
+                formerror: state.formerror,
                 showForm,
                 getProjects,
-                addProject
+                addProject,
+                showError
             }}
         >
             {props.children}
