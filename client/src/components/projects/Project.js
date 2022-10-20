@@ -8,7 +8,7 @@ const Project = ({ project }) => {
     const projectContext = useContext(ProjectContext);
     const { actualProject } = projectContext;
 
-    // Get tasks state
+    // Get context tasks function
     const taskContext = useContext(TaskContext)
     const { getTasks } = taskContext;
 
