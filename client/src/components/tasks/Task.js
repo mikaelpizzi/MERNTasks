@@ -10,7 +10,7 @@ const Task = ({ task }) => {
 
     // Get context task function deleteTask
     const taskContext = useContext(TaskContext);
-    const { deleteTask, getTasks } = taskContext;
+    const { deleteTask, getTasks, changeTaskState } = taskContext;
 
     // Extract actual project
     const [ actualProject ] = project;
@@ -21,6 +21,16 @@ const Task = ({ task }) => {
         getTasks(actualProject.id);
     }
 
+    // Function to modify task state
+    const onClickChangeState = task => {
+        if (task.state) {
+            task.state = false;
+        } else {
+            task.state = true;
+        }
+
+        changeTaskState(task);
+    }
 
     return (  
         <li className="tarea sombra">
@@ -33,6 +43,7 @@ const Task = ({ task }) => {
                         <button
                             type="button"
                             className="completo"
+                            onClick={() => onClickChangeState(task)}
                         >Completed</button>
                     )
                 :
@@ -40,6 +51,7 @@ const Task = ({ task }) => {
                         <button
                             type="button"
                             className="incompleto"
+                            onClick={() => onClickChangeState(task)}
                         >Not Completed</button>
                     )
                 }
