@@ -1,5 +1,6 @@
 import { Fragment, useContext } from "react";
 import ProjectContext from "../../context/projects/ProjectContext";
+import TaskContext from "../../context/tasks/TaskContext";
 import Task from "./Task";
 
 const TaskList = () => {
@@ -8,13 +9,15 @@ const TaskList = () => {
     const projectContext = useContext(ProjectContext);
     const { project, deleteProject } = projectContext;
 
+    // Get project tasks
+    const taskContext = useContext(TaskContext);
+    const { projecttasks } = taskContext;
+
     // If no project is selected
     if (!project) return <h2>Select a project</h2>;
 
     // Array destructuring for extract actual project
     const [ actualProject ] = project;
-
-    const ProjectTasks = [];
 
     // Delete a project
     const onClickDeleteProject = () => {
@@ -29,9 +32,9 @@ const TaskList = () => {
             <h2>Project: { actualProject.name }</h2>
 
             <ul className="listado-tareas">
-                { ProjectTasks.length === 0 
+                { projecttasks.length === 0 
                     ? (<li className="tarea"><p>There are no tasks</p></li>)
-                    : ProjectTasks.map(task => (
+                    : projecttasks.map(task => (
                         <Task
                             task={task}
                         />
