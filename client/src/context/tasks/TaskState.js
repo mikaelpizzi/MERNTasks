@@ -4,7 +4,8 @@ import {
     ADD_TASK,
     VALIDATE_TASK,
     DELETE_TASK,
-    TASK_STATE
+    TASK_STATE,
+    ACTUAL_TASK
 } from "../../types";
 import TaskContext from "./TaskContext";
 import TaskReducer from "./TaskReducer"
@@ -27,7 +28,8 @@ const TaskState = (props) => {
             {id: 13, name: 'Choose Payment Platforms', state: false, projectId: 4},
         ],
         projecttasks: null,
-        taskerror: false
+        taskerror: false,
+        selectedtask: null
     }
 
     // Create dispatch and state
@@ -73,17 +75,27 @@ const TaskState = (props) => {
             payload: task
         })
     }
+
+    // Extract a task for edition
+    const saveActualTask = task => {
+        dispatch({
+            type: ACTUAL_TASK,
+            payload: task
+        })
+    }
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
                 projecttasks: state.projecttasks,
                 taskerror: state.taskerror,
+                selectedtask: state.selectedtask,
                 getTasks,
                 addTask,
                 validateTask,
                 deleteTask,
-                changeTaskState
+                changeTaskState,
+                saveActualTask
             }}
         >
             {props.children}

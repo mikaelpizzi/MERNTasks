@@ -10,7 +10,7 @@ const Task = ({ task }) => {
 
     // Get context task function deleteTask
     const taskContext = useContext(TaskContext);
-    const { deleteTask, getTasks, changeTaskState } = taskContext;
+    const { deleteTask, getTasks, changeTaskState, saveActualTask } = taskContext;
 
     // Extract actual project
     const [ actualProject ] = project;
@@ -32,6 +32,11 @@ const Task = ({ task }) => {
         changeTaskState(task);
     }
 
+    // Add an actual task when user desires to edit it
+    const onClickSelectTask = task => {
+        saveActualTask(task);
+    }
+    
     return (  
         <li className="tarea sombra">
             <p>{task.name}</p>
@@ -61,6 +66,7 @@ const Task = ({ task }) => {
                 <button
                     type="button"
                     className="btn btn-primario"
+                    onClick={() => onClickSelectTask(task)}
                 >Edit</button>
 
                 <button
