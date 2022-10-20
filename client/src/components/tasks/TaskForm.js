@@ -10,7 +10,7 @@ const TaskForm = () => {
 
     // Extract context addTask function
     const taskContext = useContext(TaskContext);
-    const { selectedtask, taskerror, addTask, validateTask, getTasks, updateTask } = taskContext;
+    const { selectedtask, taskerror, addTask, validateTask, getTasks, updateTask, cleanTask } = taskContext;
 
     // Effect that detect if there's a selected task for editing
     useEffect(() => {
@@ -54,7 +54,7 @@ const TaskForm = () => {
         if (name.trim() === '') {
             validateTask()
             return;
-        }
+        } 
 
         // Check if user wants to edit or add task
         if (selectedtask === null) {
@@ -65,6 +65,9 @@ const TaskForm = () => {
         } else {
             // Update existing task
             updateTask(task);
+
+            // Delete selected task from state
+            cleanTask();
         }
 
         // Get and filter actual project tasks

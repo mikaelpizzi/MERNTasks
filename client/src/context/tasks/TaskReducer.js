@@ -5,9 +5,10 @@ import {
     DELETE_TASK,
     TASK_STATE,
     ACTUAL_TASK,
-    UPDATE_TASK
+    UPDATE_TASK,
+    CLEAN_TASK
 } from "../../types";
-
+// eslint-disable-next-line
 export default (state, action) => {
     switch(action.type) {
         case PROJECT_TASKS:
@@ -15,7 +16,7 @@ export default (state, action) => {
                 ...state,
                 projecttasks: state.tasks.filter( task => task.projectId === action.payload )
             }
-        case ADD_TASK: // THE NEW ADDED TASKS DO NOT HAVE AN ID, SO WHEN YOU DELETE ONE ALL OF THEM ARE DELETED
+        case ADD_TASK:
             return {
                 ...state,
                 tasks: [action.payload, ...state.tasks],
@@ -41,6 +42,11 @@ export default (state, action) => {
             return {
                 ...state,
                 selectedtask: action.payload
+            }
+        case CLEAN_TASK:
+            return {
+                ...state,
+                selectedtask: null
             }
         default:
             return state;

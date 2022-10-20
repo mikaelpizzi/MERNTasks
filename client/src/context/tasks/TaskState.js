@@ -6,10 +6,12 @@ import {
     DELETE_TASK,
     TASK_STATE,
     ACTUAL_TASK,
-    UPDATE_TASK
+    UPDATE_TASK,
+    CLEAN_TASK
 } from "../../types";
 import TaskContext from "./TaskContext";
-import TaskReducer from "./TaskReducer"
+import TaskReducer from "./TaskReducer";
+import { v4 } from "uuid";
 
 const TaskState = (props) => {
     const initialState = {
@@ -48,6 +50,7 @@ const TaskState = (props) => {
 
     // Add new task to the selected project
     const addTask = task => {
+        task.id = v4();
         dispatch({
             type: ADD_TASK,
             payload: task
@@ -92,6 +95,13 @@ const TaskState = (props) => {
             payload: task
         })
     }
+
+    // Delete selected task (for editing) from state
+    const cleanTask = () => {
+        dispatch({
+            type: CLEAN_TASK
+        })
+    }
     return (
         <TaskContext.Provider
             value={{
@@ -105,7 +115,8 @@ const TaskState = (props) => {
                 deleteTask,
                 changeTaskState,
                 saveActualTask,
-                updateTask
+                updateTask,
+                cleanTask
             }}
         >
             {props.children}
