@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import ProjectContext from "../../context/projects/ProjectContext";
 import TaskContext from "../../context/tasks/TaskContext";
 
@@ -10,7 +10,19 @@ const TaskForm = () => {
 
     // Extract context addTask function
     const taskContext = useContext(TaskContext);
-    const { taskerror, addTask, validateTask, getTasks } = taskContext;
+    const { selectedtask, taskerror, addTask, validateTask, getTasks } = taskContext;
+
+    // Effect that detect if there's a selected task for editing
+    useEffect(() => {
+        if (selectedtask !== null) {
+            saveTask(selectedtask);
+        } else {
+            saveTask({
+                name: ''
+            })
+        }
+
+    }, [selectedtask]);
 
     // Form state
     const [ task, saveTask ] = useState({
@@ -78,7 +90,7 @@ const TaskForm = () => {
                     <input  
                         type="submit"
                         className="btn btn-primario btn-submit btn-block"
-                        value="Add Task"
+                        value={ selectedtask ? "Edit Task" : "Add Task"}
                     />
                 </div>
             </form>
