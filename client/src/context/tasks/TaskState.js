@@ -2,7 +2,8 @@ import { useReducer } from "react"
 import { 
     PROJECT_TASKS,
     ADD_TASK,
-    VALIDATE_TASK
+    VALIDATE_TASK,
+    DELETE_TASK
 } from "../../types";
 import TaskContext from "./TaskContext";
 import TaskReducer from "./TaskReducer"
@@ -10,19 +11,19 @@ import TaskReducer from "./TaskReducer"
 const TaskState = (props) => {
     const initialState = {
         tasks: [
-            {name: 'Choose Platform', state: true, projectId: 1},
-            {name: 'Choose Colors', state: false, projectId: 2},
-            {name: 'Choose Payment Platforms', state: false, projectId: 3},
-            {name: 'Choose Hosting', state: true, projectId: 4},
-            {name: 'Choose Platformo', state: true, projectId: 3},
-            {name: 'Choose Colors (cool colors)', state: false, projectId: 1},
-            {name: 'Choose Payment Platforms (no Paypal)', state: false, projectId: 1},
-            {name: 'Choose Platform (a cool one)', state: true, projectId: 2},
-            {name: 'Choose Colors', state: false, projectId: 4},
-            {name: 'Choose Payment Platforms', state: false, projectId: 2},
-            {name: 'Choose Platform', state: true, projectId: 4},
-            {name: 'Choose Colors', state: false, projectId: 3},
-            {name: 'Choose Payment Platforms', state: false, projectId: 4},
+            {id: 1, name: 'Choose Platform', state: true, projectId: 1},
+            {id: 2, name: 'Choose Colors', state: false, projectId: 2},
+            {id: 3, name: 'Choose Payment Platforms', state: false, projectId: 3},
+            {id: 4, name: 'Choose Hosting', state: true, projectId: 4},
+            {id: 5, name: 'Choose Platformo', state: true, projectId: 3},
+            {id: 6, name: 'Choose Colors (cool colors)', state: false, projectId: 1},
+            {id: 7, name: 'Choose Payment Platforms (no Paypal)', state: false, projectId: 1},
+            {id: 8, name: 'Choose Platform (a cool one)', state: true, projectId: 2},
+            {id: 9, name: 'Choose Colors', state: false, projectId: 4},
+            {id: 10, name: 'Choose Payment Platforms', state: false, projectId: 2},
+            {id: 11, name: 'Choose Platform', state: true, projectId: 4},
+            {id: 12, name: 'Choose Colors', state: false, projectId: 3},
+            {id: 13, name: 'Choose Payment Platforms', state: false, projectId: 4},
         ],
         projecttasks: null,
         taskerror: false
@@ -55,6 +56,14 @@ const TaskState = (props) => {
             type: VALIDATE_TASK,
         })
     }
+
+    // Delete task by id
+    const deleteTask = id => {
+        dispatch({
+            type: DELETE_TASK,
+            payload: id
+        })
+    }
     return (
         <TaskContext.Provider
             value={{
@@ -63,7 +72,8 @@ const TaskState = (props) => {
                 taskerror: state.taskerror,
                 getTasks,
                 addTask,
-                validateTask
+                validateTask,
+                deleteTask
             }}
         >
             {props.children}
