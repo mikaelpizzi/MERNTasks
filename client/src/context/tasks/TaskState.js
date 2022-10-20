@@ -1,7 +1,8 @@
 import { useReducer } from "react"
 import { 
     PROJECT_TASKS,
-    ADD_TASK
+    ADD_TASK,
+    VALIDATE_TASK
 } from "../../types";
 import TaskContext from "./TaskContext";
 import TaskReducer from "./TaskReducer"
@@ -23,7 +24,8 @@ const TaskState = (props) => {
             {name: 'Choose Colors', state: false, projectId: 3},
             {name: 'Choose Payment Platforms', state: false, projectId: 4},
         ],
-        projecttasks: null
+        projecttasks: null,
+        taskerror: false
     }
 
     // Create dispatch and state
@@ -47,13 +49,21 @@ const TaskState = (props) => {
         })
     }
 
+    // Validate and show error if necessary
+    const validateTask = () => {
+        dispatch({
+            type: VALIDATE_TASK,
+        })
+    }
     return (
         <TaskContext.Provider
             value={{
                 tasks: state.tasks,
                 projecttasks: state.projecttasks,
+                taskerror: state.taskerror,
                 getTasks,
-                addTask
+                addTask,
+                validateTask
             }}
         >
             {props.children}
