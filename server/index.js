@@ -1,15 +1,14 @@
 const express = require('express');
+const connectDB = require('./config/db');
 
 // Create server
 const app = express();
 
+// Connect to database
+connectDB();
+
 // App port
 const PORT = process.env.PORT || 4000;
-
-// Define main page
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-})
 
 // Start app
 app.listen(PORT, () => {
